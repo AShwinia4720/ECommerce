@@ -1,16 +1,10 @@
 package com.androidlearning.ecommerce
 
 import Model.ProductMainPage
-import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.Menu
-import android.view.MenuInflater
-import android.view.View
-import android.view.View.OnClickListener
-import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.GridLayoutManager
 import com.androidlearning.ecommerce.Adapter.ProductMainPageAdapter
 import com.androidlearning.ecommerce.databinding.ActivityMainBinding
@@ -39,9 +33,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun inThisView(){
         productMainPageAdapter = ProductMainPageAdapter(products)
-
+        productMainPageAdapter.onProductClickListener=OnMyProductClickListener()
         binding.recyclerMainProductPage.adapter=productMainPageAdapter
         binding.recyclerMainProductPage.layoutManager=GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false)
+    }
+
+
+    inner class OnMyProductClickListener:ProductMainPageAdapter.OnProductClickListener{
+        override fun onProductClick(position: Int) {
+            val intent = Intent(this@MainActivity,ProductDetailsActivity::class.java)
+            intent.putExtra("proDet", products[position])
+            startActivity(intent)
+        }
     }
 
 

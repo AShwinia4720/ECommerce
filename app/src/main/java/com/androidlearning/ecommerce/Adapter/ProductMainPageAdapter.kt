@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.androidlearning.ecommerce.R
-import com.androidlearning.ecommerce.databinding.ActivityMainBinding
 import com.androidlearning.ecommerce.databinding.ProductListBinding
 
-class ProductMainPageAdapter(private val products: ArrayList<ProductMainPage>):RecyclerView.Adapter<ProductMainPageAdapter.ProductViewHolder>() {
+class ProductMainPageAdapter(
+    private val products: ArrayList<ProductMainPage>
+):RecyclerView.Adapter<ProductMainPageAdapter.ProductViewHolder>() {
     interface OnProductClickListener {
         fun onProductClick(position: Int)
     }
